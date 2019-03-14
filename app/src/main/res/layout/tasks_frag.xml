@@ -14,74 +14,81 @@
   ~ limitations under the License.
   -->
 
-<com.wjk32.mytodoapp_mvp.tasks.ScrollChildSwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/refresh_layout"
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
-        android:id="@+id/tasksContainer"
+    <com.wjk32.mytodoapp_mvp.tasks.ScrollChildSwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/tasksLL"
+        <RelativeLayout
+            android:id="@+id/tasksContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clickable="true"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/filteringLabel"
+            <LinearLayout
+                android:id="@+id/tasksLL"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="@dimen/list_item_padding"
-                android:layout_marginRight="@dimen/list_item_padding"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/tasks_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/filteringLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/list_item_padding"
+                    android:layout_marginRight="@dimen/list_item_padding"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
-        <LinearLayout
-            android:id="@+id/noTasks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
+                <ListView
+                    android:id="@+id/tasks_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/noTasksIcon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_assignment_turned_in_24dp" />
-
-            <TextView
-                android:id="@+id/noTasksMain"
+            <LinearLayout
+                android:id="@+id/noTasks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/no_tasks_all"
-                android:layout_marginBottom="@dimen/list_item_padding" />
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/noTasksAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:background="@drawable/touch_feedback"
-                android:gravity="center"
-                android:text="@string/no_tasks_add" />
+                <ImageView
+                    android:id="@+id/noTasksIcon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_assignment_turned_in_24dp" />
 
-        </LinearLayout>
-    </RelativeLayout>
-</com.wjk32.mytodoapp_mvp.tasks.ScrollChildSwipeRefreshLayout>
+                <TextView
+                    android:id="@+id/noTasksMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/no_tasks_all"
+                    android:layout_marginBottom="@dimen/list_item_padding" />
 
+                <TextView
+                    android:id="@+id/noTasksAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/touch_feedback"
+                    android:gravity="center"
+                    android:text="@string/no_tasks_add" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </com.wjk32.mytodoapp_mvp.tasks.ScrollChildSwipeRefreshLayout>
+    
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

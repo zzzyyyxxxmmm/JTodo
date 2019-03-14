@@ -15,8 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.wjk32.mytodoapp_mvp.Injection;
 import com.wjk32.mytodoapp_mvp.R;
 import com.wjk32.mytodoapp_mvp.addtask.AddEditTaskActivity;
 import com.wjk32.mytodoapp_mvp.data.Task;
@@ -56,7 +56,7 @@ public class TasksFragment extends Fragment implements TasksContract.View {
     private TextView mFilteringLabelView;
 
     public TasksFragment() {
-        // Requires empty public constructor
+        
     }
 
     public static TasksFragment newInstance() {
@@ -66,6 +66,7 @@ public class TasksFragment extends Fragment implements TasksContract.View {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPresenter=new TasksPresenter(Injection.provideTasksRepository(getContext()),this );
         mListAdapter = new TasksAdapter(new ArrayList<Task>(0), mItemListener);
     }
 
@@ -108,19 +109,7 @@ public class TasksFragment extends Fragment implements TasksContract.View {
                 showAddTask();
             }
         });
-
-        // Set up floating action button
-        FloatingActionButton fab =
-                (FloatingActionButton) getActivity().findViewById(R.id.fab_add_task);
-
-        fab.setImageResource(R.drawable.ic_add);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.addNewTask();
-            }
-        });
-
+        
         // Set up progress indicator
         final ScrollChildSwipeRefreshLayout swipeRefreshLayout =
                 (ScrollChildSwipeRefreshLayout) root.findViewById(R.id.refresh_layout);
@@ -140,13 +129,15 @@ public class TasksFragment extends Fragment implements TasksContract.View {
         });
 
         setHasOptionsMenu(true);
-
         return root;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.menu_add_task:
+                Intent intent=new Intent(getContext(),AddEditTaskActivity.class);
+                startActivity(intent);
             case R.id.menu_clear:
                 mPresenter.clearCompletedTasks();
                 break;
@@ -169,7 +160,6 @@ public class TasksFragment extends Fragment implements TasksContract.View {
     public void showFilteringPopUpMenu() {
         PopupMenu popup = new PopupMenu(getContext(), getActivity().findViewById(R.id.menu_filter));
         popup.getMenuInflater().inflate(R.menu.filter_tasks, popup.getMenu());
-
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -419,6 +409,7 @@ public class TasksFragment extends Fragment implements TasksContract.View {
         }
     }
 
+    
     public interface TaskItemListener {
 
         void onTaskClick(Task clickedTask);
